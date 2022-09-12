@@ -1,0 +1,25 @@
+{
+  "name": "uvu-asm-language-support",
+  "displayName": "UVU ASM Language Support",
+  "description": "Adds VS Code support for the assembly language used by UVU in CS 4380.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.71.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "uvuasm",
+      "aliases": ["UVU ASM", "uvuasm"],
+      "extensions": [".asm"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "uvuasm",
+      "scopeName": "source.uvuasm",
+      "path": "./syntaxes/uvuasm.tmLanguage.json"
+    }]
+  }
+}

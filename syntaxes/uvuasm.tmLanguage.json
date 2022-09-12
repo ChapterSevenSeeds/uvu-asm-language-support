@@ -1,0 +1,46 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "UVU ASM",
+	"patterns": [
+		{
+			"instruction": "#keywords&labels"
+		},
+		{
+			"comment-only-line": "#comment"
+		}
+	],
+	"repository": {
+		"keywords&labels": {
+			"match": "^(\\S)+\\s+(\\w|\\.)+\\s+(\\S)*,?\\s+(\\S)*(\\s|;|$).*$",
+			"captures": {
+				"0":{
+					"name": "variable.name"
+				},
+				"1": {
+					"name": "keyword.control",
+				}
+			}
+		},
+		"characters": {
+			"name": "constant.character",
+			"begin": "'",
+			"end": "'"
+		},
+		"comments": {
+			"name": "comment.line",
+			"begin": ";",
+			"end": "$"
+		},
+		"literals": {
+			"name": "constant.numeric",
+			"begin": "0|#",
+			"end": " |$|,"
+		},
+		"registers": {
+			"name": "variable.parameter",
+			"begin": " (r|R)",
+			"end": " |$|,"
+		}
+	},
+	"scopeName": "source.uvuasm"
+}
