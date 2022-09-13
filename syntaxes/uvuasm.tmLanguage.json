@@ -4,7 +4,7 @@
 	"patterns": [
 		{
 			"comment": "Start label and opcode",
-			"match": "^(\\S*)\\s+([\\w\\.]+)",
+			"match": "^(\\w*)\\s+([\\w\\.]+)",
 			"captures": {
 				"0": {
 					"name": "keyword.control"
@@ -16,7 +16,7 @@
 		},
 		{
 			"comment": "Register as operand",
-			"match": "r\\d+",
+			"match": "(r|R)\\d+",
 			"name": "constant.language"
 		},
 		{
@@ -32,7 +32,7 @@
 			"name": "constant.numeric"
 		},
 		{
-			"match": "[a-zA-Z0-9_]+",
+			"match": "\\w+",
 			"comment": "Label as operand",
 			"name": "variable.parameter"
 		},

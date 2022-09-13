@@ -1,5 +1,6 @@
 {
   "name": "uvu-asm-language-support",
+  "publisher": "ChapterSevenSeeds",
   "displayName": "UVU ASM Language Support",
   "description": "Adds VS Code support for the assembly language used by UVU in CS 4380.",
   "version": "0.0.1",
