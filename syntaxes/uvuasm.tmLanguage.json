@@ -11,35 +11,63 @@
 	],
 	"repository": {
 		"keywords&labels": {
-			"match": "^(\\S)+\\s+(\\w|\\.)+\\s+(\\S)*,?\\s+(\\S)*(\\s|;|$).*$",
+			"match": "^(\\S*)\\s+([\\w\\.]+)\\s*([a-zA-Z0-9_']*)(?:,\\s+(\\S*))?",
 			"captures": {
 				"0":{
 					"name": "variable.name"
 				},
 				"1": {
-					"name": "keyword.control",
+					"name": "keyword.control"
+				},
+				"2": {
+					"patterns": [
+						{
+							"begin": " (r|R)",
+							"end": " |$",
+							"name": "variable.parameter"
+						},
+						{
+							"begin": "(0x)|#",
+							"end": " |$",
+							"name": "constant.numeric"
+						},
+						{
+							"begin": "'",
+							"end": "'",
+							"name": "constant.character"
+						},
+						{
+							"begin": ";",
+							"end": "$",
+							"name": "comment.line"
+						}
+					]
+				},
+				"3": {
+					"patterns": [
+						{
+							"begin": " (r|R)",
+							"end": " |$",
+							"name": "variable.parameter"
+						},
+						{
+							"begin": "(0x)|#",
+							"end": " |$",
+							"name": "constant.numeric"
+						},
+						{
+							"begin": "'",
+							"end": "'",
+							"name": "constant.character"
+						},
+						{
+							"begin": ";",
+							"end": "$",
+							"name": "comment.line"
+						}
+					]
 				}
 			}
-		},
-		"characters": {
-			"name": "constant.character",
-			"begin": "'",
-			"end": "'"
-		},
-		"comments": {
-			"name": "comment.line",
-			"begin": ";",
-			"end": "$"
-		},
-		"literals": {
-			"name": "constant.numeric",
-			"begin": "0|#",
-			"end": " |$|,"
-		},
-		"registers": {
-			"name": "variable.parameter",
-			"begin": " (r|R)",
-			"end": " |$|,"
 		}
 	},
 	"scopeName": "source.uvuasm"
