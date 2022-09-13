@@ -3,72 +3,46 @@
 	"name": "UVU ASM",
 	"patterns": [
 		{
-			"instruction": "#keywords&labels"
-		},
-		{
-			"comment-only-line": "#comment"
-		}
-	],
-	"repository": {
-		"keywords&labels": {
-			"match": "^(\\S*)\\s+([\\w\\.]+)\\s*([a-zA-Z0-9_']*)(?:,\\s+(\\S*))?",
+			"comment": "Start label and opcode",
+			"match": "^(\\S*)\\s+([\\w\\.]+)",
 			"captures": {
-				"0":{
-					"name": "variable.name"
-				},
-				"1": {
+				"0": {
 					"name": "keyword.control"
 				},
-				"2": {
-					"patterns": [
-						{
-							"begin": " (r|R)",
-							"end": " |$",
-							"name": "variable.parameter"
-						},
-						{
-							"begin": "(0x)|#",
-							"end": " |$",
-							"name": "constant.numeric"
-						},
-						{
-							"begin": "'",
-							"end": "'",
-							"name": "constant.character"
-						},
-						{
-							"begin": ";",
-							"end": "$",
-							"name": "comment.line"
-						}
-					]
-				},
-				"3": {
-					"patterns": [
-						{
-							"begin": " (r|R)",
-							"end": " |$",
-							"name": "variable.parameter"
-						},
-						{
-							"begin": "(0x)|#",
-							"end": " |$",
-							"name": "constant.numeric"
-						},
-						{
-							"begin": "'",
-							"end": "'",
-							"name": "constant.character"
-						},
-						{
-							"begin": ";",
-							"end": "$",
-							"name": "comment.line"
-						}
-					]
+				"1": {
+					"name": "variable.name"
 				}
 			}
+		},
+		{
+			"comment": "Register as operand",
+			"match": "r\\d+",
+			"name": "constant.language"
+		},
+		{
+			"comment": "Character",
+			"begin": "'",
+			"end": "'",
+			"name": "string.quoted.single"
+		},
+		{
+			"comment": "Numeric literal",
+			"begin": "0|#",
+			"end": "\\w|$|,",
+			"name": "constant.numeric"
+		},
+		{
+			"match": "[a-zA-Z0-9_]+",
+			"comment": "Label as operand",
+			"name": "variable.parameter"
+		},
+		{
+			"comment": "Comments",
+			"begin": ";",
+			"end": "$",
+			"name": "comment.line"
 		}
-	},
+
+	],
 	"scopeName": "source.uvuasm"
 }
