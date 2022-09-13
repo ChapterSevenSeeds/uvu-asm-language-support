@@ -1,8 +1,7 @@
-import { HoverProvider, ProviderResult, Hover, languages } from 'vscode';
+import { HoverProvider, ProviderResult, Hover, languages,  } from 'vscode';
 
-languages.registerHoverProvider('uvuasm', {
-    provideHover(document, position, token) {
-        const asdf = document.getText(document.getWordRangeAtPosition(position));
-        if (document.getText() === "JMP") return new Hover("Jumps to a specified label");
+languages.registerDocumentFormattingEditProvider('uvuasm', {
+    provideDocumentFormattingEdits(document, options, token) {
+
     }
-});
+})
