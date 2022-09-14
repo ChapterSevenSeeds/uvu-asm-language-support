@@ -8,6 +8,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 - Initial release with syntax highlighting
 
-## [0.0.2] - 9/13/2022
+## [0.1.0] - 9/13/2022
 
 - Added formatting
