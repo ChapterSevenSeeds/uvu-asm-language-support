@@ -16,7 +16,7 @@
 		},
 		{
 			"comment": "Register as operand",
-			"match": "(r|R)\\d+",
+			"match": "((r|R)\\d+)|((SL)|(SB)|(SP)|(FP)|(PC))",
 			"name": "constant.language"
 		},
 		{
@@ -28,7 +28,7 @@
 		{
 			"comment": "Numeric literal",
 			"begin": "0|#",
-			"end": "\\w|$|,",
+			"end": "\\s|$|,",
 			"name": "constant.numeric"
 		},
 		{
