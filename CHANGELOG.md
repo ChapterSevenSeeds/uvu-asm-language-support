@@ -11,3 +11,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [0.1.0] - 9/13/2022
 
 - Added formatting
+
+## [0.2.0] - 10/9/2022
+
+- Fixed formatting issues
+- Fixed syntax highlighting issues
+- Added hover tooltips
+- Added support for navigating to definitions of labels
