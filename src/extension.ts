@@ -1,4 +1,4 @@
-import { HoverProvider, ProviderResult, Hover, languages, Range, TextEdit, Position, DebugConsoleMode } from 'vscode';
+import { HoverProvider, ProviderResult, Hover, languages, Range, TextEdit, Position, DebugConsoleMode, CompletionItem, CompletionItemKind, Location } from 'vscode';
 
 class InsertChars {
     private _asSpaces: number;
@@ -86,14 +86,36 @@ languages.registerHoverProvider('uvuasm', {
             case "DIVI":
                 return new Hover("`DIVI RD Imm`  \nDivides `RD` by `Imm` and stores the result in `RD`.");
             case ".INT":
-                return new Hover("`.INT *Imm*`  \nAllocates space for an integer with an immediate value if provided, zero otherwise. No ASCII values allowed.");
+                return new Hover("`.INT Imm`  \nAllocates space for an integer with an immediate value if provided, zero otherwise. No ASCII values allowed.");
             case ".BYT":
-                return new Hover("`.BYT *Imm*`  \nAllocates space for a byte with an immediate value if provided, zero otherwise.");
+                return new Hover("`.BYT Imm`  \nAllocates space for a byte with an immediate value if provided, zero otherwise.");
             case "TRP":
-                return new Hover("`TRP Imm`  \nIf `Imm` = 0, executes STOP routine. If `Imm` = 1, prints the integer value of `R3` to stdout. If `Imm` = 2, reads an integer from stdin into `R3`. If `Imm` = 3, writes the byte value of `R3` to stdout. If `Imm` = 4, reads a byte from stdin into `R3`.");
+                return new Hover(["`TRP Imm`",
+                    "If `Imm` =",
+                    " - `0`: Executes STOP routine",
+                    " - `1`: Prints the integer value of `R3` to stdout",
+                    " - `2`: Reads an integer from stdin into `R3`",
+                    " - `3`: Writes the byte value of `R3`",
+                    " - `4`: Reads a byte from stdin into `R3`"].join("  \n"));
+            case "PC":
+                return new Hover("The program counter.");
+            case "SL":
+                return new Hover("The stack limit. Expanding the stack past this point is a stack overflow.");
+            case "SB":
+                return new Hover("The bottom of the stack.");
+            case "SP":
+                return new Hover("The stack pointer.");
+            case "FP":
+                return new Hover("The frame pointer.");
+            default:
+                var register = /^R(\d{1,2})$/.exec(word);
+                if (register != null && register[1] != null) {
+                    return new Hover(`Register ${register[1]}`);
+                }
+                break;
         }
     }
-})
+});
 
 languages.registerDocumentFormattingEditProvider('uvuasm', {
     provideDocumentFormattingEdits(document, options, token) {
@@ -129,4 +151,37 @@ languages.registerDocumentFormattingEditProvider('uvuasm', {
 
         return whiteSpaceRanges.map(x => new TextEdit(x.range, "".padStart(insertChars.insertChars - (options.insertSpaces ? x.labelLength : Math.floor(x.labelLength / options.tabSize)), replacementChar)))
     }
+});
+
+languages.registerDefinitionProvider('uvuasm', {
+    provideDefinition: (document, position, token) => {
+        const range = document.getWordRangeAtPosition(position);
+        const word = document.getText(range);
+
+        const lines = document.getText().split('\n');
+
+        for (const [index, line] of Object.entries(lines)) {
+            if (new RegExp(`^${word}`).test(line)) {
+                return [new Location(document.uri, new Position(Number(index), 0))];
+            }
+        }
+
+        return [];
+    },
 })
+
+/* "completionProvider": {
+    "resolveProvider": "true",
+    "triggerCharacters": [
+        "."
+    ]
+}
+ */
+/* languages.registerCompletionItemProvider('uvuasm', {
+    provideCompletionItems: (document, position, token) => {
+        const range = document.getWordRangeAtPosition(position);
+        const word = document.getText(range);
+        const asdf = new CompletionItem("R3", CompletionItemKind.Variable);
+        return [asdf];
+    }
+}); */
