@@ -16,13 +16,13 @@
 		},
 		{
 			"comment": "Register as operand",
-			"match": "((r|R)\\d+)|((SL)|(SB)|(SP)|(FP)|(PC))",
+			"match": "((r|R)\\d+)|((SL)|(SB)|(SP)|(FP)|(PC)|(HP)|(HT))",
 			"name": "constant.language"
 		},
 		{
 			"comment": "Character",
 			"begin": "'",
-			"end": "'",
+			"end": "(?<!\\)'",
 			"name": "string.quoted.single"
 		},
 		{
