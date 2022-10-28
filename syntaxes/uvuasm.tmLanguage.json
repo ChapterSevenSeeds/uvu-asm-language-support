@@ -22,7 +22,7 @@
 		{
 			"comment": "Character",
 			"begin": "'",
-			"end": "(?<!\\)'",
+			"end": "'",
 			"name": "string.quoted.single"
 		},
 		{
@@ -32,7 +32,7 @@
 			"name": "constant.numeric"
 		},
 		{
-			"match": "\\w+",
+			"match": "(?<!')(\\w+)(?!')",
 			"comment": "Label as operand",
 			"name": "variable.parameter"
 		},
