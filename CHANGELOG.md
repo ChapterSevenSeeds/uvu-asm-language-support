@@ -24,3 +24,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Added highlighting for string literals
 - Added a hover tooltip for the optional `.STR` directive
 - Added proper highlighting of escape characters in both string and character literals
+
+## [0.2.2] - 11/1/2022
+
+- Updated changelog
