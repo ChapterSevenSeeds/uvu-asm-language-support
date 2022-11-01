@@ -18,3 +18,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Fixed syntax highlighting issues
 - Added hover tooltips
 - Added support for navigating to definitions of labels
+- 
+- ## [0.2.1] - 11/1/2022
+
+- Added highlighting and hover tooltips for string literals
+- Added proper highlighting of escape characters in both string and character literals
