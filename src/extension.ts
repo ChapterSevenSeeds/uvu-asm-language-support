@@ -89,6 +89,8 @@ languages.registerHoverProvider('uvuasm', {
                 return new Hover("`.INT Imm`  \nAllocates space for an integer with an immediate value if provided, zero otherwise. No ASCII values allowed.");
             case ".BYT":
                 return new Hover("`.BYT Imm`  \nAllocates space for a byte with an immediate value if provided, zero otherwise.");
+            case ".STR":
+                return new Hover("`.STR \"Imm\"`  \nAllocates space for a byte array whose values represent the characters from the string given in the operand. Individual implementations can either append a null terminator at the end or encode the string length as the first four bytes of the array.");
             case "TRP":
                 return new Hover(["`TRP Imm`",
                     "If `Imm` =",

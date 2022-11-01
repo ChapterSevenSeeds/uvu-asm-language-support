@@ -22,8 +22,23 @@
 		{
 			"comment": "Character",
 			"begin": "'",
-			"end": "'",
+			"end": "(?<!\\\\)'",
+			"patterns": [
+				{
+					"include": "#escape"
+				}
+			],
 			"name": "string.quoted.single"
+		},
+		{
+			"begin": "\"",
+			"end": "(?<!\\\\)\"",
+			"name": "string.quoted.double",
+			"patterns": [
+				{
+					"include": "#escape"
+				}
+			]
 		},
 		{
 			"comment": "Numeric literal",
@@ -32,7 +47,7 @@
 			"name": "constant.numeric"
 		},
 		{
-			"match": "(?<!')(\\w+)(?!')",
+			"match": "\\w+",
 			"comment": "Label as operand",
 			"name": "variable.parameter"
 		},
@@ -42,7 +57,12 @@
 			"end": "$",
 			"name": "comment.line"
 		}
-
 	],
+	"repository": {
+		"escape": {
+			"match": "\\\\.",
+			"name": "constant.character.escape"
+		}
+	},
 	"scopeName": "source.uvuasm"
 }
