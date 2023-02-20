@@ -3,7 +3,8 @@
     "publisher": "ChapterSevenSeeds",
     "displayName": "UVU ASM Language Support",
     "description": "Adds VS Code support for the assembly language used by UVU in CS 4380.",
-    "version": "0.2.2",
+    "version": "0.2.4",
+    "icon": "logos/Logo-full.png",
     "engines": {
         "vscode": "^1.71.0"
     },
@@ -13,11 +14,15 @@
     "activationEvents": [
         "onLanguage:uvuasm"
     ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ChapterSevenSeeds/uvu-asm-language-support"
+    },
     "main": "./out/extension.js",
     "contributes": {
         "capabilities": {
             "hoverProvider": true,
-            "definitionProvider" : true
+            "definitionProvider": true
         },
         "languages": [
             {
@@ -29,7 +34,11 @@
                 "extensions": [
                     ".asm"
                 ],
-                "configuration": "./language-configuration.json"
+                "configuration": "./language-configuration.json",
+                "icon": {
+                    "light": "logos/logo-64.png",
+                    "dark": "logos/logo-64.png"
+                }
             }
         ],
         "grammars": [

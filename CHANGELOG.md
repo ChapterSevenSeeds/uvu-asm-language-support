@@ -28,3 +28,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [0.2.2] - 11/1/2022
 
 - Updated changelog
+
+## [0.2.3] - 2/20/2023
+
+- Added icons
+
+## [0.2.4] - 2/20/2023
+
+- Trying different path for file icons
